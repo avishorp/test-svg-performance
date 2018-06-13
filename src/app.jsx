@@ -17,7 +17,8 @@ export default class App extends React.Component {
         super()
 
         this.state = {
-            triangles: []
+            triangles: [],
+            selected: null
         }
     }
 
@@ -87,7 +88,9 @@ export default class App extends React.Component {
                 { this.state.triangles.map((t, idx) => <Triangle 
                     points={t.vertices}
                     color={t.color}
-                    key={idx}/>) }
+                    key={idx}
+                    selected={this.state.selected == idx}
+                    onClick={() => this.setState({ selected: idx})}/>) }
             </svg>
 
             </div>

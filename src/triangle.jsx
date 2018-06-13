@@ -1,4 +1,5 @@
 import React from 'react'
+import Draggable from 'react-draggable'
 
 export default class Triangle extends React.Component {
 
@@ -10,7 +11,15 @@ export default class Triangle extends React.Component {
         const { points, color } = this.props
         const pt = points.map(p => p.join(',')).join(' ')
 
-        return <polygon points={pt} style={{ fill: color }}/>
+        const t = selected => <polygon 
+            points={pt} 
+            style={{ fill: color, stroke: selected? 'black' : null }} 
+            onClick={this.props.onClick}/>
+        const el = this.props.selected?
+            <Draggable>{t(true)}</Draggable> :
+            t(false)
+
+        return el
     }
 
 }
