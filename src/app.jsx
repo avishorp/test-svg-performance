@@ -87,7 +87,9 @@ export default class App extends React.Component {
                 { this.state.triangles.map((t, idx) => <Triangle 
                     points={t.vertices}
                     color={t.color}
-                    key={idx}/>) }
+                    key={idx}
+                    onClick={() => console.log(`Triangle ${idx} clicked`)}/>
+                )}
             </svg>
 
             </div>
