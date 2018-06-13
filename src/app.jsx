@@ -1,6 +1,9 @@
 import rnd from 'random'
 import colorName from 'color-name'
 import pickRandom from 'pick-random'
+import Slider from 'rc-slider'
+
+import 'rc-slider/assets/index.css'
 
 import React from 'react'
 import Triangle from './triangle.jsx'
@@ -69,17 +72,25 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        this.setTriangles(1000)
+        this.setTriangles(1)
         console.log(this.state)
     }
 
     render() {
-        return <svg width="100%" height="1000">
-            { this.state.triangles.map((t, idx) => <Triangle 
-                points={t.vertices}
-                color={t.color}
-                key={idx}/>) }
+        return <div>
+            <Slider 
+                min={10} 
+                max={10000}
+                onChange={v => this.setTriangles(v)}
+                />
+            <svg width="100%" height="1000">
+                { this.state.triangles.map((t, idx) => <Triangle 
+                    points={t.vertices}
+                    color={t.color}
+                    key={idx}/>) }
             </svg>
+
+            </div>
     }
 
 }
